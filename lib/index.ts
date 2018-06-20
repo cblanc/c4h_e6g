@@ -2,6 +2,8 @@ export interface Lambda {
 	(n: number): number;
 }
 
+type ChurchEncoding = ChurchBoolean | ChurchNumeral;
+
 export interface ChurchNumeral {
 	(f: Lambda): Lambda;
 }
