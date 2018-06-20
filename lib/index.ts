@@ -24,3 +24,11 @@ export const churchEncode = (n: number): ChurchNumeral => {
 		}
 	};
 };
+
+const increment = (x: number): number => x + 1;
+
+/**
+ * To get back the number of applications, we count from 0
+ * each time the function is applied
+ */
+export const churchDecode = (f: ChurchNumeral): number => f(increment)(0);
