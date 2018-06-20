@@ -32,3 +32,12 @@ const increment = (x: number): number => x + 1;
  * each time the function is applied
  */
 export const churchDecode = (f: ChurchNumeral): number => f(increment)(0);
+
+/**
+ * Adding two church numerals A, B means applying the function A+B times
+ */
+export const addition = (A: ChurchNumeral, B: ChurchNumeral): ChurchNumeral => {
+	return (f: Lambda): Lambda => {
+		return (x: number): number => A(f)(B(f)(x));
+	};
+};
