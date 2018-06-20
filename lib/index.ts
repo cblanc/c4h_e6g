@@ -36,8 +36,14 @@ export const churchDecode = (f: ChurchNumeral): number => f(increment)(0);
 /**
  * Adding two church numerals A, B means applying the function A+B times
  */
-export const addition = (A: ChurchNumeral, B: ChurchNumeral): ChurchNumeral => {
+export const add = (A: ChurchNumeral, B: ChurchNumeral): ChurchNumeral => {
 	return (f: Lambda): Lambda => {
 		return (x: number): number => A(f)(B(f)(x));
+	};
+};
+
+export const multiply = (A: ChurchNumeral, B: ChurchNumeral): ChurchNumeral => {
+	return (f: Lambda): Lambda => {
+		return (x: number): number => A(B(f))(x);
 	};
 };

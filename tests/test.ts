@@ -1,5 +1,5 @@
 import { assert } from "chai";
-import { churchEncode, churchDecode, addition } from "../lib/index";
+import { churchEncode, churchDecode, add, multiply } from "../lib/index";
 
 describe("Church encoding", () => {
 	it ("it applies function n times", () => {
@@ -19,9 +19,16 @@ describe("Church decoding", () => {
 	});
 });
 
-describe("addition", () => {
+describe("add", () => {
 	it ("adds two church numerals", () => {
-		const result = addition(churchEncode(8), churchEncode(9));
+		const result = add(churchEncode(8), churchEncode(9));
 		assert.equal(churchDecode(result), 17);
+	});
+});
+
+describe("multiply", () => {
+	it ("adds two church numerals", () => {
+		const result = multiply(churchEncode(3), churchEncode(2));
+		assert.equal(churchDecode(result), 6);
 	});
 });
