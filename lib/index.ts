@@ -2,8 +2,6 @@ export interface Lambda {
 	(n: number): number;
 }
 
-type ChurchEncoding = ChurchBoolean | ChurchNumeral;
-
 export interface ChurchNumeral {
 	(f: Lambda): Lambda;
 }
@@ -27,7 +25,7 @@ export const churchEncode = (n: number): ChurchNumeral => {
 	};
 };
 
-const increment = (x: number): number => x + 1;
+const increment: Lambda = x => x + 1;
 
 /**
  * To get back the number of applications, we count from 0
