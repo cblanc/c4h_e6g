@@ -33,17 +33,21 @@ const increment: Lambda = x => x + 1;
  */
 export const churchDecode = (f: ChurchNumeral): number => f(increment)(0);
 
+interface ChurchFunction {
+	(a: ChurchNumeral, b: ChurchNumeral): ChurchNumeral;
+}
+
 /**
  * Adding two church numerals A, B means applying the function A+B times
  */
-export const add = (A: ChurchNumeral, B: ChurchNumeral): ChurchNumeral => {
+export const add: ChurchFunction = (a, b) => {
 	return (f: Lambda): Lambda => {
-		return (x: number): number => A(f)(B(f)(x));
+		return (x: number): number => a(f)(b(f)(x));
 	};
 };
 
-export const multiply = (A: ChurchNumeral, B: ChurchNumeral): ChurchNumeral => {
+export const multiply: ChurchFunction = (a, b) => {
 	return (f: Lambda): Lambda => {
-		return (x: number): number => A(B(f))(x);
+		return (x: number): number => a(b(f))(x);
 	};
 };
