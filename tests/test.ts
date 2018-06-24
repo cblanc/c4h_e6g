@@ -7,6 +7,7 @@ import {
 	ChurchNumeral,
 	Lambda,
 	multiply,
+	successor,
 } from "../lib/index";
 
 const c = churchEncode;
@@ -84,4 +85,10 @@ describe("multiply", () => {
 	const method = multiply;
 	const identity = c(1);
 	describe("operation properties", checkProperties({ method, identity }));
+});
+
+describe("successor", () => {
+	it ("returns successor church numeral", () => {
+		churchEqual(successor(c(1)), c(2));
+	});
 });

@@ -34,7 +34,7 @@ const increment: Lambda = x => x + 1;
 export const churchDecode = (f: ChurchNumeral): number => f(increment)(0);
 
 export interface ChurchFunction {
-	(a: ChurchNumeral, b?: ChurchNumeral): ChurchNumeral;
+	(a: ChurchNumeral, b: ChurchNumeral): ChurchNumeral;
 }
 
 /**
@@ -52,3 +52,13 @@ export const multiply: ChurchFunction = (a, b) => {
 	};
 };
  
+export const successor = (a: ChurchNumeral): ChurchNumeral => {
+	return (f: Lambda): Lambda => {
+		return (x: number): number => {
+			// add(C1, a)
+			// => C1(f)(a(f)(x));
+			// C1 of f is just f (i.e. C1 = f(x) or f applied once)
+			return f(a(f)(x));
+		};
+	};
+};
