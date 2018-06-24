@@ -33,7 +33,7 @@ const increment: Lambda = x => x + 1;
  */
 export const churchDecode = (f: ChurchNumeral): number => f(increment)(0);
 
-interface ChurchFunction {
+export interface ChurchFunction {
 	(a: ChurchNumeral, b: ChurchNumeral): ChurchNumeral;
 }
 
